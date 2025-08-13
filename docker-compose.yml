@@ -1,15 +1,13 @@
-version: "3.8"
-
 services:
   app:
     build:
       args:
         - user=pooja
         - uid=1002
+        - gid=1002
       context: .
       dockerfile: Dockerfile
     container_name: laravel12-app
-    user: "${UID}:${GID}"
     volumes:
       - ./:/var/www
       - ./php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
