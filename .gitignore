@@ -1,0 +1,58 @@
+*.log
+.DS_Store
+.env
+.env.backup
+.env.production
+.phpactor.json
+.phpunit.result.cache
+/.fleet
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+/auth.json
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/vendor
+Homestead.json
+Homestead.yaml
+Thumbs.db
+.editorconfig
+### Docker ###
+docker-compose.override.yml
+docker-compose.*.yml
+docker-compose/.env
+docker-compose/logs
+docker-compose/conf.d
+Dockerfile*
+.docker/
+
+### Laravel ###
+/bootstrap/cache/
+/storage/app/public
+/storage/framework/cache/data
+/storage/framework/sessions
+/storage/framework/testing
+/storage/framework/views
+/storage/logs
+
+### Node ###
+/npm-debug.log*
+/yarn-debug.log*
+/yarn-error.log*
+
+### OS generated files ###
+ehthumbs.db
+Icon?
+Desktop.ini
+
+### Misc ###
+*.sublime-workspace
+*.sublime-project
+/.env.*.local
+/.php-cs-fixer.cache
