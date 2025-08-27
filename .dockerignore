@@ -1,0 +1,50 @@
+# VCS
+.git
+.gitignore
+
+# Environment & secrets (keep example)
+.env
+.env.*
+!.env.example
+
+# Node artifacts
+node_modules/
+npm-debug.log
+yarn.lock
+pnpm-lock.yaml
+
+# Composer vendor installed inside image; keep if you want fresh install
+vendor/
+
+# OS / IDE junk
+*.swp
+*.DS_Store
+.idea/
+.vscode/
+
+# Logs & runtime generated files
+storage/logs/*
+!storage/logs/.gitignore
+storage/framework/cache/*
+!storage/framework/cache/.gitignore
+storage/framework/sessions/*
+!storage/framework/sessions/.gitignore
+storage/framework/views/*
+!storage/framework/views/.gitignore
+bootstrap/cache/*.php
+
+# Uploaded files (optional: comment out if you need them baked into image)
+storage/app/public/*
+!storage/app/public/.gitignore
+
+# Tests (omit from production image)
+tests/
+phpunit.xml
+
+# Docker & Compose (not needed inside image)
+docker-compose.yml
+Dockerfile
+
+# Misc build artifacts
+coverage/
+.dist/
