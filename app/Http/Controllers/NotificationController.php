@@ -3,36 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Firebase\JWT\JWT;
+use App\Models\User;
+use App\Notifications\SignalRNotification;
 
 class NotificationController extends Controller
 {
     public function send(Request $request)
     {
-        $message = $request->input('message', 'Hello from Laravel API');
+        $message = $request->input('message', 'Hello from Laravel Notification!');
 
-        $connectionString = config('signalr.connection_string');
-        $hub = config('signalr.hub');
+        // For demo: send to user #1
+        $user = User::find(1);
+        $user->notify(new SignalRNotification($message));
 
-        preg_match('/Endpoint=(.*?);/', $connectionString, $endpointMatch);
-        preg_match('/AccessKey=(.*?);/', $connectionString, $accessKeyMatch);
 
-        $endpoint = $endpointMatch[1] ?? '';
-        $accessKey = $accessKeyMatch[1] ?? '';
-
-        $url = "$endpoint/api/v1/hubs/$hub";
-        $jwt = $this->generateJwt($url, $accessKey);
-
-        Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => "Bearer $jwt",
-        ])->post($url, [
-            'target' => 'newNotification',
-            'arguments' => [$message]
-        ]);
-
-        return response()->json(['status' => true, 'message' => 'Notification sent']);
+        return response()->json(['status' => true, 'message' => 'Notification queued']);
     }
 
     public function negotiate()

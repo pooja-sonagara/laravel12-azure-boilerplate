@@ -110,6 +110,34 @@
                             </span>
                         </li>
                     </ul>
+
+                    <h2 class="mb-4 font-medium text-[13px] text-[#1b1b18] dark:text-[#EDEDEC]">Available Features</h2>
+                    <ul class="flex flex-col mb-6 space-y-3">
+                        <li>
+                            <a href="{{ route('login.azure') }}" class="inline-flex items-center space-x-2 px-4 py-3 bg-[#0078d4] hover:bg-[#106ebe] text-[#1b1b18] rounded-lg text-[13px] font-medium transition-colors shadow-md w-full">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-[#1b1b18]">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                </svg>
+                                <span class="text-[#1b1b18] font-medium">Azure Authentication</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('azure.storage.index') }}" class="inline-flex items-center space-x-2 px-4 py-3 bg-[#0078d4] hover:bg-[#106ebe] text-[#1b1b18] rounded-lg text-[13px] font-medium transition-colors shadow-md w-full">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-[#1b1b18]">
+                                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                                </svg>
+                                <span class="text-[#1b1b18] font-medium">Azure Storage</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/notifications" class="inline-flex items-center space-x-2 px-4 py-3 bg-[#0078d4] hover:bg-[#106ebe] text-[#1b1b18] rounded-lg text-[13px] font-medium transition-colors shadow-md w-full">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-[#1b1b18]">
+                                    <path d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21"/>
+                                </svg>
+                                <span class="text-[#1b1b18] font-medium">SignalR Notifications</span>
+                            </a>
+                        </li>
+                    </ul>
                     <ul class="flex gap-3 text-sm leading-normal">
                         <li>
                             <a href="https://cloud.laravel.com" target="_blank" class="inline-block dark:bg-[#eeeeec] dark:border-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white dark:hover:border-white hover:bg-black hover:border-black px-5 py-1.5 bg-[#1b1b18] rounded-sm border border-black text-white text-sm leading-normal">
