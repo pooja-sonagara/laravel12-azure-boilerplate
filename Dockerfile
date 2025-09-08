@@ -6,11 +6,6 @@ ARG user=pooja
 ARG uid=1002
 ARG gid=1002
 
-# Export them so RUN sees them
-ENV USERNAME=${user}
-ENV USER_UID=${uid}
-ENV USER_GID=${gid}
-
 # Set working directory
 WORKDIR /var/www
 
@@ -38,10 +33,10 @@ RUN echo "upload_max_filesize=50M\npost_max_size=50M" > /usr/local/etc/php/conf.
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Create system group and user
-RUN groupadd -g $USER_GID $USERNAME \
-    && useradd -m -u $USER_UID -g $USER_GID -G www-data $USERNAME \
-    && mkdir -p /home/$USERNAME/.composer \
-    && chown -R $USERNAME:$USERNAME /home/$USERNAME /var/www
+RUN groupadd -g $gid $user \
+    && useradd -m -u $uid -g $gid -G www-data $user \
+    && mkdir -p /home/$user/.composer \
+    && chown -R $user:$user /home/$user /var/www
 
 # Copy only composer files first
 COPY composer.json composer.lock ./
@@ -56,7 +51,7 @@ COPY . .
 COPY .env.example .env
 
 # Fix Laravel storage and cache permissions
-RUN chown -R $USERNAME:$USERNAME \
+RUN chown -R $user:$user \
     /var/www/storage \
     /var/www/bootstrap/cache \
     && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
@@ -67,12 +62,8 @@ RUN git config --global --add safe.directory /var/www
 # Generate Laravel app key
 RUN php artisan key:generate
 
-# Copy and prepare run script
-COPY run.sh .
-RUN chmod +x run.sh
-
 # Set user for runtime
-USER $USERNAME
+USER $user
 
 # Default command
 CMD ["php-fpm"]

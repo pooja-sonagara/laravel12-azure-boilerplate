@@ -37,10 +37,10 @@ This boilerplate includes the following Azure integrations:
    cd laravel12-azure-boilerplate
    ```
 
-2. **Environment setup**
+2. **Configure Azure credentials**
    ```bash
-   cp .env.example .env
-   # Edit .env file with your Azure credentials
+   # Edit .env file with your Azure credentials (file is automatically created)
+   nano .env
    ```
 
 3. **Build and start containers**
