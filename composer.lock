@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a47ccb790bd8a8c52822d1d11fe9325e",
+    "content-hash": "a1c2d254e44a39ac09a3c2f0936a9fa3",
     "packages": [
         {
             "name": "azure-oss/storage",

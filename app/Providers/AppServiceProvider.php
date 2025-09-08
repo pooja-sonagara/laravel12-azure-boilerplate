@@ -13,6 +13,8 @@ use AzureOss\FlysystemAzureBlobStorage\AzureBlobStorageAdapter;
 use GuzzleHttp\Psr7\Uri;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Filesystem;
+use Illuminate\Notifications\ChannelManager;
+use App\Channels\SignalRChannel;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -60,6 +62,10 @@ class AppServiceProvider extends ServiceProvider
                 $adapter,
                 $config
             );
+        });
+
+        $this->app->make(ChannelManager::class)->extend('signalr', function ($app) {
+            return new SignalRChannel();
         });
     }
 }

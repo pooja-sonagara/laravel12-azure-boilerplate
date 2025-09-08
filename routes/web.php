@@ -24,3 +24,6 @@ Route::get('auth/azure/callback', function () {
 Route::prefix('storage/azure')->group(function () {
     Route::get('/', [AzureStorageController::class, 'index'])->name('azure.storage.index');
 });
+
+
+Route::view('/notifications', 'notifications');
