@@ -1,61 +1,212 @@
+# Laravel 12 Azure Boilerplate
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive Laravel 12 boilerplate project with Azure integrations, featuring Microsoft SSO authentication, real-time notifications with Azure SignalR Service, and Azure Blob Storage for file management.
 
-## About Laravel
+## 🚀 Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This boilerplate includes the following Azure integrations:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Microsoft Azure SSO** - Single Sign-On authentication using Azure Active Directory
+- **Azure SignalR Service** - Real-time notifications and messaging
+- **Azure Blob Storage** - Cloud file storage and management
+- **Laravel 12** - Latest Laravel framework
+- **Docker Support** - Containerized development environment
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 📋 Prerequisites
 
-## Learning Laravel
+### For Local Development:
+- PHP 8.3 or higher
+- Composer
+- Azure Account with active subscription
+- Azure Active Directory tenant for SSO
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### For Containerized setup:
+- Docker & Docker Compose
+- Azure Account with active subscription
+- Azure Active Directory tenant for SSO
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+> **Note:** If you're using Docker, you don't need PHP or Composer installed locally as they're included in the container.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Installation
 
-## Laravel Sponsors
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/pooja-sonagara/laravel12-azure-boilerplate.git
+   cd laravel12-azure-boilerplate
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. **Environment setup**
+   ```bash
+   cp .env.example .env
+   # Edit .env file with your Azure credentials
+   ```
 
-### Premium Partners
+3. **Build and start containers**
+   ```bash
+   docker-compose up -d
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+> **Note:** The Docker container automatically handles:
+> - Installing PHP dependencies via Composer
+> - Generating application key
+> - Setting up proper permissions
+> - Configuring the environment
 
-## Contributing
+The application will be available at `http://localhost:8080`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Services included:**
+- **Laravel App** (PHP 8.3-FPM)
+- **Nginx** (Web server on port 8080)
+- **MySQL** (Database on port 3307)
+- **Redis** (Caching)
 
-## Code of Conduct
+## ⚙️ Azure Configuration
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Microsoft Azure SSO Configuration
 
-## Security Vulnerabilities
+Add the following credentials to your `.env` file:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```env
+# Azure SSO Configuration
+AZURE_CLIENT_ID=your_application_id
+AZURE_CLIENT_SECRET=your_client_secret
+AZURE_TENANT_ID=your_tenant_id
+AZURE_REDIRECT_URI=http://localhost:8080/auth/azure/callback
+```
 
-## License
+**How to get Azure SSO credentials:**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Go to [Azure Portal](https://portal.azure.com)
+2. Navigate to **Azure Active Directory** → **App registrations**
+3. Click **New registration** or select existing app
+4. Set **Redirect URI** to `http://localhost:8080/auth/azure/callback`
+5. Go to **Certificates & secrets** → **Client secrets** → **New client secret**
+6. Copy the following values:
+   - **Application (client) ID** → `AZURE_CLIENT_ID`
+   - **Client secret value** → `AZURE_CLIENT_SECRET`
+   - **Directory (tenant) ID** → `AZURE_TENANT_ID`
+
+### Azure Storage Configuration
+
+### Azure Storage Configuration
+
+Add the following credentials to your `.env` file:
+
+```env
+# Azure Storage Configuration
+AZURE_STORAGE_ACCOUNT_NAME=your_storage_account_name
+AZURE_STORAGE_ACCOUNT_KEY=your_storage_account_key
+AZURE_STORAGE_CONTAINER=your_container_name
+```
+
+**How to get Azure Storage credentials:**
+
+1. Go to [Azure Portal](https://portal.azure.com)
+2. Navigate to **Storage accounts**
+3. Create or select your storage account
+4. Go to **Access keys** in the left menu
+5. Copy the **Storage account name** and **Key1** or **Key2**
+6. Create a container in **Containers** section (e.g., "uploads")
+
+### Azure SignalR Service Configuration
+
+Add the following to your `.env` file:
+
+```env
+# Azure SignalR Service Configuration
+SIGNALR_CONNECTION_STRING=Endpoint=https://your-signalr.service.signalr.net;AccessKey=your_access_key;Version=1.0;
+SIGNALR_HUB_NAME=NotificationHub
+```
+
+**How to get Azure SignalR credentials:**
+
+1. Go to [Azure Portal](https://portal.azure.com)
+2. Navigate to **SignalR Service**
+3. Create a new SignalR service or select existing one
+4. Go to **Keys** in the left menu
+5. Copy the **Connection string** (Primary or Secondary)
+6. Set your hub name (default: "NotificationHub")
+
+## 🔐 Testing Microsoft SSO
+
+### 1. Access the Login Page
+
+Visit: `http://localhost:8080/auth/azure`
+
+This will redirect you to Microsoft's login page where you can sign in with your Azure AD credentials.
+
+### 2. Test the Authentication Flow
+
+1. **Initiate Login:**
+   ```
+   GET /auth/azure
+   ```
+   This redirects to Microsoft's OAuth endpoint
+
+2. **Handle Callback:**
+   ```
+   GET /auth/azure/callback
+   ```
+   Microsoft redirects back with authorization code
+
+3. **View User Data:**
+   Currently displays user information using `dd($user)` for testing
+
+## 🧪 Testing Azure SignalR
+
+### 1. Access the Notifications Page
+
+Visit: `http://localhost:8080/notifications`
+
+This page displays live notifications in real-time using the Blade template.
+
+### 2. Test Real-time Notifications Using API
+
+#### Method 1: Using cURL (Recommended)
+```bash
+# Send a test notification via API
+curl -X POST http://localhost:8080/api/notify \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Custom notification message from API."}'
+```
+
+### 3. Expected Behavior
+
+When you send a notification via API:
+1. **API Endpoint**: `/api/notify` receives the POST request
+2. **Backend**: Laravel sends notification to User ID 1 through SignalRChannel
+3. **Azure SignalR**: Service receives and broadcasts the message
+4. **Live Updates**: The notifications page automatically displays new notifications
+5. **UI Elements**: 
+   - New notification appears at the top of the list
+   - Notification count updates automatically
+   - Timestamp shows current time
+   - Message icon (📨) appears
+
+### 4. Current Implementation
+
+**SignalR Real-time Notifications:**
+- Shows **live notifications only** that disappear on page refresh
+- Real-time delivery to connected clients while page is open
+- Notifications are also saved to database but not displayed on page load
+- For permanent messages, you can fetch from database separately
+
+## 🗂️ Testing Azure Storage
+
+### Upload Test Files
+
+1. **Navigate to storage interface:**
+   - Visit: `http://localhost:8080/storage/azure`
+   - Use the Azure storage functionality in your application
+
+2. **Verify uploads in Azure:**
+   - Go to Azure Portal → Storage Account → Containers
+   - Check your configured container for uploaded files
+
+### Storage Configuration Files
+
+- **Filesystem config:** `config/filesystems.php`
+- **Storage Service Provider:** `app/Providers/AppServiceProvider.php`
+
